@@ -1,6 +1,8 @@
 package com.bl.regularexpressions;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistrationCases {
@@ -46,5 +48,44 @@ public class UserRegistrationCases {
         //The Regular expression .* will tell the computer that any character can be used any number of times.
         //the captured match must be followed by whatever is within the parentheses but that part isn't captured.
         System.out.println(Pattern.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%&])(?=.{8,})", password));
+    }
+
+    public void emailValidation() {
+        ArrayList<String> emailSamples = new ArrayList<>();
+
+        emailSamples.add("abc@yahoo.com");
+        emailSamples.add("abc-100@yahoo.com");
+        emailSamples.add("abc.100@yahoo.com");
+        emailSamples.add("abc111@abc.com");
+        emailSamples.add("abc-100@abc.net");
+        emailSamples.add("abc.100@abc.com.au");
+        emailSamples.add("abc@1.com");
+        emailSamples.add("abc@gmail.com.com");
+        emailSamples.add("abc+100@gmail.com");
+
+        emailSamples.add("abc");
+        emailSamples.add("abc@.com.my");
+        emailSamples.add("abc123@gmail.a");
+        emailSamples.add("abc123@.com");
+        emailSamples.add("abc123@.com.com");
+        emailSamples.add(".abc@abc.com");
+        emailSamples.add("abc()*@gmail.com");
+        emailSamples.add("abc@%*.com");
+        emailSamples.add("abc..2002@gmail.com");
+        emailSamples.add("abc.@gmail.com");
+        emailSamples.add("abc@abc@gmail.com");
+        emailSamples.add("abc@gmail.com.1a");
+
+        for (String emails : emailSamples) {
+            String email = "^([a-zA-Z0-9]|([-.+][0-9]))+@(([a-zA-Z0-9]))+(([.]+[a-zA-Z]{2,3})|([.]+[a-zA-Z]{2,3})+([.]+([a-zA-Z]{2,3})))$";
+            Pattern pattern = Pattern.compile(email);
+            Matcher matcher = pattern.matcher(emails);
+
+            if (matcher.matches()) {
+                System.out.println("Valid email : " + emails + " : " + matcher.matches());
+            } else {
+                System.out.println("Invalid email : " + emails + " : " + matcher.matches());
+            }
+        }
     }
 }
