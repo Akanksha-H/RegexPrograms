@@ -7,10 +7,12 @@ public class UserRegistration {
     static final int ENTER_LAST_NAME = 2;
     static final int ENTER_EMAIL = 3;
     static final int ENTER_MOBILE_NUMBER = 4;
+    static final int ENTER_PASSWORD = 5;
 
     public static void main(String[] args) {
         System.out.println("Welcome to User Registration Program");
-        System.out.println("Enter the choice 1.Enter first name 2.Enter last name 3.Enter email 4.Mobile Number");
+        System.out.println("Enter the choice 1.Enter first name 2.Enter last name 3.Enter email 4.Mobile Number+\n" +
+                "5.Enter Password");
 
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
@@ -31,6 +33,10 @@ public class UserRegistration {
 
             case ENTER_MOBILE_NUMBER:
                 userCases.enterMobileNumber();
+                break;
+
+            case ENTER_PASSWORD:
+                userCases.enterPassword();
                 break;
         }
     }
