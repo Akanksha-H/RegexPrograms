@@ -38,5 +38,7 @@ public class UserRegistrationCases {
         System.out.println(Pattern.matches("^[a-zA-Z0-9!@#$%^&*]{8,}$", password));
         System.out.println("Enter password \n" + "Hint: Should have at least 1 Upper Case");
         System.out.println(Pattern.matches("^[A-Z][a-z0-9!@#$%^&*]{7,}$", password));
+        System.out.println("Enter password \n" + "Hint: Should have at least 1 numeric number in the password");
+        System.out.println(Pattern.matches("^[A-Z][0-9][a-z!@#$%^&*]{6,}$", password));
     }
 }
