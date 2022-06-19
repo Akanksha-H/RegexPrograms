@@ -40,5 +40,11 @@ public class UserRegistrationCases {
         System.out.println(Pattern.matches("^[A-Z][a-z0-9!@#$%^&*]{7,}$", password));
         System.out.println("Enter password \n" + "Hint: Should have at least 1 numeric number in the password");
         System.out.println(Pattern.matches("^[A-Z][0-9][a-z!@#$%^&*]{6,}$", password));
+        System.out.println("Enter password \n" + "Hint: Has exactly 1 Special Character");
+        System.out.println(Pattern.matches("^([A-Z][0-9][a-z][!@#$%^&*]){8,}$", password));
+
+        //The Regular expression .* will tell the computer that any character can be used any number of times.
+        //the captured match must be followed by whatever is within the parentheses but that part isn't captured.
+        System.out.println(Pattern.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%&])(?=.{8,})", password));
     }
 }
