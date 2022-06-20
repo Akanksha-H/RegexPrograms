@@ -1,91 +1,101 @@
 package com.bl.regularexpressions;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistrationCases {
-    Scanner scanner = new Scanner(System.in);
+    static final String USERNAME_PATTERN = "^[A-Z][a-z]{2,}$";
+    static final String USERLASTNAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";
+    static final String USEREMAIL_PATTERN = "^[a-zA-Z\\d+_.-]+@[bl.co|bl.in]+$";
+    static final String USERMOBILE_PATTERN = "^[91]{2}[\\s][6-9][0-9]{9}$";
+    static final String PASSWORD_PATTERN = "^([a-z]|[A-Z]|[0-9]|[!@#%&]){8,}$";
 
-    public void enterFirstName() {
-        System.out.println("Enter the First name starts with Cap and has minimum 3 characters");
-        String firstName = scanner.next();
-        String regex = "^[A-Z][a-z]{2,}$";
-        System.out.println(firstName + " = " + firstName.matches(regex));
+    public static boolean isValidUserName() {
+        String userName = "Geetanjali";
+        Pattern pattern = Pattern.compile(USERNAME_PATTERN);
+        Matcher matcher = pattern.matcher(userName);
+        boolean matches = matcher.matches();
+        System.out.println("Username:  " + matches);
+        return matches;
     }
 
-    public void enterLastName() {
-        System.out.println("Enter the Last name starts with Cap and has minimum 3 characters");
-        String lastName = scanner.next();
-        System.out.println(Pattern.matches("^[A-Z]{1}[a-z]{2,}$", lastName));
+    public static boolean isInValidUserName() {
+        String userName = "geetanjali";
+        Pattern pattern = Pattern.compile(USERNAME_PATTERN);
+        Matcher matcher = pattern.matcher(userName);
+        boolean matches = matcher.matches();
+        System.out.println("Username:  " + matches);
+        return matches;
     }
 
-    public void enterValidEmail() {
-        System.out.println("Enter the Email\n" + "Hint: Email has 3 mandatory parts (abc, bl & co) "
-                + "and 2 optional (xyz & in) with " + "precise @ and . positions");
-        String email = scanner.next();
-        System.out.println(Pattern.matches("^[a-zA-Z\\d+_.-]+@[bl.co|bl.in]+$", email));
+    public static boolean isValidUserLastName() {
+        String userLastName = "Sen";
+        Pattern pattern = Pattern.compile(USERLASTNAME_PATTERN);
+        Matcher matcher = pattern.matcher(userLastName);
+        boolean matches = matcher.matches();
+        System.out.println("User Last Name:  " + matches);
+        return matches;
     }
 
-    public void enterMobileNumber() {
-        System.out.println("Enter the Mobile Number\n" + "Hint: Country code follow 10 digit number");
-        String mobileNumber = scanner.nextLine();
-        System.out.println(Pattern.matches("^[91]{2}[\\s][6-9][0-9]{9}$", mobileNumber));
+    public static boolean isInValidUserLastName() {
+        String userLastName = "sen";
+        Pattern pattern = Pattern.compile(USERLASTNAME_PATTERN);
+        Matcher matcher = pattern.matcher(userLastName);
+        boolean matches = matcher.matches();
+        System.out.println("User Last Name:  " + matches);
+        return matches;
+    }
+    public static boolean isValidUserEmail() {
+        String userEmail = "GeetanjaliSen@bl.co";
+        Pattern pattern = Pattern.compile(USEREMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(userEmail);
+        boolean matches = matcher.matches();
+        System.out.println("User Email:  " + matches);
+        return matches;
     }
 
-    public void enterPassword() {
-        System.out.println("Enter password \n" + "Hint: minimum 8 Characters");
-        String password = scanner.next();
-        System.out.println(Pattern.matches("^[a-zA-Z0-9!@#$%^&*]{8,}$", password));
-        System.out.println("Enter password \n" + "Hint: Should have at least 1 Upper Case");
-        System.out.println(Pattern.matches("^[A-Z][a-z0-9!@#$%^&*]{7,}$", password));
-        System.out.println("Enter password \n" + "Hint: Should have at least 1 numeric number in the password");
-        System.out.println(Pattern.matches("^[A-Z][0-9][a-z!@#$%^&*]{6,}$", password));
-        System.out.println("Enter password \n" + "Hint: Has exactly 1 Special Character");
-        System.out.println(Pattern.matches("^([A-Z][0-9][a-z][!@#$%^&*]){8,}$", password));
-
-        //The Regular expression .* will tell the computer that any character can be used any number of times.
-        //the captured match must be followed by whatever is within the parentheses but that part isn't captured.
-        System.out.println(Pattern.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%&])(?=.{8,})", password));
+    public static boolean isInValidUserEmail() {
+        String userEmail = "eetanjaliS.co";
+        Pattern pattern = Pattern.compile(USEREMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(userEmail);
+        boolean matches = matcher.matches();
+        System.out.println("User Email:  " + matches);
+        return matches;
     }
 
-    public void emailValidation() {
-        ArrayList<String> emailSamples = new ArrayList<>();
+    public static boolean isValidUserMobileNumber() {
+        String userMobileNumber = "91 7584562152";
+        Pattern pattern = Pattern.compile(USERMOBILE_PATTERN);
+        Matcher matcher = pattern.matcher(userMobileNumber);
+        boolean matches = matcher.matches();
+        System.out.println("User Mobile Number:  " + matches);
+        return matches;
+    }
 
-        emailSamples.add("abc@yahoo.com");
-        emailSamples.add("abc-100@yahoo.com");
-        emailSamples.add("abc.100@yahoo.com");
-        emailSamples.add("abc111@abc.com");
-        emailSamples.add("abc-100@abc.net");
-        emailSamples.add("abc.100@abc.com.au");
-        emailSamples.add("abc@1.com");
-        emailSamples.add("abc@gmail.com.com");
-        emailSamples.add("abc+100@gmail.com");
+    public static boolean isInValidUserMobileNumber() {
+        String userMobileNumber = "7584562152";
+        Pattern pattern = Pattern.compile(USERMOBILE_PATTERN);
+        Matcher matcher = pattern.matcher(userMobileNumber);
+        boolean matches = matcher.matches();
+        System.out.println("User Mobile Number:  " + matches);
+        return matches;
+    }
 
-        emailSamples.add("abc");
-        emailSamples.add("abc@.com.my");
-        emailSamples.add("abc123@gmail.a");
-        emailSamples.add("abc123@.com");
-        emailSamples.add("abc123@.com.com");
-        emailSamples.add(".abc@abc.com");
-        emailSamples.add("abc()*@gmail.com");
-        emailSamples.add("abc@%*.com");
-        emailSamples.add("abc..2002@gmail.com");
-        emailSamples.add("abc.@gmail.com");
-        emailSamples.add("abc@abc@gmail.com");
-        emailSamples.add("abc@gmail.com.1a");
+    public static boolean isValidPassword() {
+        String password = "gSen@4895";
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+        Matcher matcher = pattern.matcher(password);
+        boolean matches = matcher.matches();
+        System.out.println("Password:  " + matches);
+        return matches;
+    }
 
-        for (String emails : emailSamples) {
-            String email = "^([a-zA-Z0-9]|([-.+][0-9]))+@(([a-zA-Z0-9]))+(([.]+[a-zA-Z]{2,3})|([.]+[a-zA-Z]{2,3})+([.]+([a-zA-Z]{2,3})))$";
-            Pattern pattern = Pattern.compile(email);
-            Matcher matcher = pattern.matcher(emails);
-
-            if (matcher.matches()) {
-                System.out.println("Valid email : " + emails + " : " + matcher.matches());
-            } else {
-                System.out.println("Invalid email : " + emails + " : " + matcher.matches());
-            }
-        }
+    public static boolean isInValidPassword() {
+        String password = "n@4895";
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+        Matcher matcher = pattern.matcher(password);
+        boolean matches = matcher.matches();
+        System.out.println("Password:  " + matches);
+        return matches;
     }
 }
