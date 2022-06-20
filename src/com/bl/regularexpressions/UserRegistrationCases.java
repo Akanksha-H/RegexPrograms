@@ -20,7 +20,7 @@ public class UserRegistrationCases {
     }
 
     public static boolean isInValidUserName() {
-        String userName = "geetanjali";
+        String userName = "";
         Pattern pattern = Pattern.compile(USERNAME_PATTERN);
         Matcher matcher = pattern.matcher(userName);
         boolean matches = matcher.matches();

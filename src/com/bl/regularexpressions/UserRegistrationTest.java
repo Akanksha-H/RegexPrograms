@@ -5,21 +5,26 @@ import org.testng.annotations.Test;
 
 public class UserRegistrationTest {
     @Test
-    public void testValidName_Happy() {
+    public void testValidName_Happy() throws InvalidInput{
         boolean validUserName = UserRegistrationCases.isValidUserName();
-        Assert.assertTrue(validUserName);
+        if(!validUserName)
+            throw new InvalidInput("Follow the hint: Enter the First name starts with Cap and\n"
+                    +" has minimum 3 characters");
     }
 
     @Test
-    public void testValidName_Sad() {
-        boolean inValidUserName = UserRegistrationCases.isInValidUserName();
-        Assert.assertFalse(inValidUserName);
+    public void testValidName_Sad(){
+        String inValidUserName = String.valueOf(UserRegistrationCases.isInValidUserName());
+        if (inValidUserName == null);
+        throw new NullPointerException("User name can't be null");
     }
-
     @Test
-    public void testValidLastName_Happy() {
+    public void testValidLastName_Happy() throws InvalidInput {
         boolean validUserLastName = UserRegistrationCases.isValidUserLastName();
-        Assert.assertTrue(validUserLastName);
+        if(!validUserLastName){
+            throw new InvalidInput("Follow the hint: Enter the Last name starts with Cap \n"
+                    + "and has minimum 3 characters");
+        }
     }
 
     @Test
@@ -29,9 +34,12 @@ public class UserRegistrationTest {
     }
 
     @Test
-    public void testValidEmail_Happy() {
+    public void testValidEmail_Happy() throws InvalidInput{
         boolean validUserEmail = UserRegistrationCases.isValidUserEmail();
-        Assert.assertTrue(validUserEmail);
+        if(!validUserEmail){
+            throw new InvalidInput("Follow the hint: Email has 3 mandatory parts (abc, bl & co)\n" +
+                    "and 2 optional (xyz & in) with precise @ and . positions");
+        }
     }
 
     @Test
@@ -41,9 +49,11 @@ public class UserRegistrationTest {
     }
 
     @Test
-    public void testValidMobileNumber_Happy() {
+    public void testValidMobileNumber_Happy() throws InvalidInput {
         boolean validUserMobileNumber = UserRegistrationCases.isValidUserMobileNumber();
-        Assert.assertTrue(validUserMobileNumber);
+        if(!validUserMobileNumber){
+            throw new InvalidInput("Follow the hint: Country code follow 10 digit number");
+        }
     }
 
     @Test
@@ -53,9 +63,12 @@ public class UserRegistrationTest {
     }
 
     @Test
-    public void testValidPassword_Happy() {
+    public void testValidPassword_Happy() throws InvalidInput{
         boolean validPassword = UserRegistrationCases.isValidPassword();
-        Assert.assertTrue(validPassword);
+        if(!validPassword){
+            throw new InvalidInput("Follow the hint: minimum 8 Characters, Should have at least 1 Upper Case\n"+
+                    ", Should have at least 1 numeric number in the password, Has exactly 1 Special Character");
+        }
     }
 
     @Test
